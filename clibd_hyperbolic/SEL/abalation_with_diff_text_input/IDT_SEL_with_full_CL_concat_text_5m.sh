@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J IDT_SEL_with_full_CL_concat_text_5m
 #SBATCH --gpus-per-node=h100:4
-#SBATCH --time=12:00:00
+#SBATCH --time=40:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
