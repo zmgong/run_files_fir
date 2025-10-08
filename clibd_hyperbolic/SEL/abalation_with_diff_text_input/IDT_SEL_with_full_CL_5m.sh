@@ -24,4 +24,4 @@ pip install -e .
 
 export OMP_NUM_THREADS=12
 
-srun python scripts/train_cl.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/abalation_with_diff_text_input/IDT_SEL_with_full_CL_5m.sh.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
+srun python scripts/train_cl.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/ablation_with_diff_text_input/IDT_SEL_with_full_CL_5m.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
