@@ -20,7 +20,7 @@ module load StdEnv/2023
 module load cuda/12.2
 module load faiss/1.7.4
 source ~/venvs/clibd-hyperbolic/bin/activate
-git checkout two_stage_training
+git checkout main
 git pull
 pip install -e .
 
