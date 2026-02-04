@@ -28,5 +28,5 @@ export OMP_NUM_THREADS=12
 
 srun python scripts/train_cl.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/organized_exp/IDT_SEL_two_stage_no_freeze.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
 srun python scripts/inference_and_eval.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/organized_exp/IDT_SEL_two_stage_no_freeze.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5 inference_and_eval_setting.eval_on=val
-srun python scripts/encode_embeddings_to_parquet.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/organized_exp/IDT_SEL_two_stage_no_freeze.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
-srun python scripts/check_taxonomy_cone_statistics.py --parquet_path ./parquet_embeddings/bioscan_5m/IDT_SEL_two_stage_no_freeze/val --output_dir ./cone_check_results/IDT_SEL_two_stage_no_freeze
+srun python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py 'model_config=for_bioscan_5m/hyperbolic/stacked_entailment_loss/organized_exp/IDT_SEL_two_stage_no_freeze.yaml' bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
+srun python scripts/result_processing_cone_check/check_taxonomy_cone_statistics.py --parquet_path ./parquet_embeddings/bioscan_5m/IDT_SEL_two_stage_no_freeze/val --output_dir ./cone_check_results/IDT_SEL_two_stage_no_freeze
