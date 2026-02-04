@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
-#SBATCH --output=logs/%N-%j.out
+#SBATCH --output=logs/IDT_SEL_relative_m_0_debug.out
 #SBATCH --mem=0
 #SBATCH --exclusive
 #SBATCH --account=rrg-msavva
