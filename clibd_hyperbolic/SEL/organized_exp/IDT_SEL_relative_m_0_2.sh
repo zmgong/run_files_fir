@@ -10,7 +10,7 @@
 #SBATCH --exclusive
 #SBATCH --account=rrg-msavva
 
-rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
+rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/* $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/
 
 cd ~/scratch/research/clibd_hyperbolic
