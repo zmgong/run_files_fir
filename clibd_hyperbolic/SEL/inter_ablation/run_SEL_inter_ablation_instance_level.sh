@@ -1,5 +1,4 @@
 #!/bin/bash
-# 6 小时链式：剩余 2.5 小时时发 SIGTERM，train_cl 在当前 train/eval 结束后保存并退出，然后自动续投。
 #SBATCH -J SEL_inter_ablation_instance
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=06:00:00
@@ -11,7 +10,6 @@
 #SBATCH --exclusive
 #SBATCH --account=rrg-msavva
 
-# 剩余约 2.5 小时时发 SIGTERM（2.5 * 3600 = 9000 秒）
 GRACE_SEC=9000
 PROJECT_ROOT="${PROJECT_ROOT:-$HOME/scratch/research/clibd_hyperbolic}"
 CHAIN_CHECKPOINT_DIR="${CHAIN_CHECKPOINT_DIR:-$PROJECT_ROOT/ckpt/bioscan_clip/ver_1_0/bioscan_5m/SEL_inter_ablation_instance_level}"
@@ -29,7 +27,7 @@ module load cuda/12.2
 module load faiss/1.7.4
 module load arrow/21.0.0
 source ~/venvs/clibd-hyperbolic/bin/activate
-git checkout main
+git checkout embed_table_and_debug_sel
 git pull
 pip install -e . -q
 
@@ -45,7 +43,6 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# 后台：剩余约 2.5 小时时发 SIGTERM（即运行 3.5 小时后发信号）
 (
   sleep $(( 6 * 3600 - GRACE_SEC ))
   if kill -0 "$train_pid" 2>/dev/null; then

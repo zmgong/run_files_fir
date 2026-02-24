@@ -27,7 +27,7 @@ module load cuda/12.2
 module load faiss/1.7.4
 module load arrow/21.0.0
 source ~/venvs/clibd-hyperbolic/bin/activate
-git checkout main
+git checkout embed_table_and_debug_sel
 git pull
 pip install -e . -q
 
