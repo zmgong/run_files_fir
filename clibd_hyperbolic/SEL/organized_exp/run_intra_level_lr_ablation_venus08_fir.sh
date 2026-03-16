@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J intra_lr_ablation_venus08
 #SBATCH --gpus-per-node=h100:4
-#SBATCH --time=50:00:00
+#SBATCH --time=08:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
