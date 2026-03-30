@@ -3,7 +3,6 @@
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=15:00:00
 #SBATCH --output=logs/%N-%j.out
-#SBATCH --partition=3dlg-hcvc-lab-long
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
