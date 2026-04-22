@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_3_parent_label_fir
+#SBATCH -J SEL_ver2_0_no_bin_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
-#SBATCH --output=logs/SEL_final_exp_ver_2/3_switch_to_parent_label.output
+#SBATCH --output=logs/SEL_final_exp_ver_2/0_no_dna_bin_common_deepest.output
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
@@ -13,7 +13,7 @@ set -euo pipefail
 
 mkdir -p logs/SEL_final_exp_ver_2
 
-cfg="3_switch_to_parent_label"
+cfg="0_no_dna_bin_common_deepest"
 
 rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/

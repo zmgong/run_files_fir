@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_5c_mwb_clw10_fir
+#SBATCH -J SEL_ver2_4c_clw10_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
-#SBATCH --output=logs/SEL_final_exp_ver_2/5c_mean_with_batch_size_clw_1_0.output
+#SBATCH --output=logs/SEL_final_exp_ver_2/4c_mean_with_batch_size_clw_1_0.output
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
@@ -13,7 +13,7 @@ set -euo pipefail
 
 mkdir -p logs/SEL_final_exp_ver_2
 
-cfg="5c_mean_with_batch_size_clw_1_0"
+cfg="4c_mean_with_batch_size_clw_1_0"
 
 rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/

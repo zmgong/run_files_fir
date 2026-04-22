@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_2_warmup_fir
+#SBATCH -J SEL_ver2_3_dna_mb_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
-#SBATCH --output=logs/SEL_final_exp_ver_2/2_add_inter_warmup.output
+#SBATCH --output=logs/SEL_final_exp_ver_2/3_add_dna_bin_memory_bank.output
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=48
@@ -13,7 +13,7 @@ set -euo pipefail
 
 mkdir -p logs/SEL_final_exp_ver_2
 
-cfg="2_add_inter_warmup"
+cfg="3_add_dna_bin_memory_bank"
 
 rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/
