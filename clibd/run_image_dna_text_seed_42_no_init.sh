@@ -19,7 +19,7 @@ module load cuda/12.2
 module load faiss/1.7.4
 module load arrow/21.0.0
 source ~/venvs/clibd-hyperbolic/bin/activate
-git checkout intra_ablation
+git checkout main
 git pull
 pip install -e .
 
