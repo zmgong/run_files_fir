@@ -17,6 +17,7 @@ cfg="2_parent_label_own_deepest_neg"
 
 rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/
+rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/*.csv $SLURM_TMPDIR/
 
 cd ~/scratch/research/clibd_hyperbolic
 module load python/3.11
@@ -29,6 +30,7 @@ git pull
 pip install -e .
 
 export OMP_NUM_THREADS=12
+export HYDRA_FULL_ERROR=1
 
 CONFIG_BASE="model_config=for_bioscan_5m/hyperbolic/SEL_final_exp_ver_2"
 CONFIG_DIR_REL="bioscanclip/config/model_config/for_bioscan_5m/hyperbolic/SEL_final_exp_ver_2"
@@ -46,14 +48,18 @@ echo "==========================================================================
 
 MC="${CONFIG_BASE}/${cfg}.yaml"
 
-python scripts/train_cl.py "${MC}" bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
+# bioscan_5m_data.* 下的 hdf5 / csv / *.json 路径都默认相对 ${bioscan_5m_data.dir}，
+# 上面已经把这些文件 rsync 到 $SLURM_TMPDIR，所以只需覆盖根目录这一处即可。
+DATA_OVERRIDES=(bioscan_5m_data.dir=$SLURM_TMPDIR)
 
-python scripts/inference_and_eval.py "${MC}" bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5
+python scripts/train_cl.py "${MC}" "${DATA_OVERRIDES[@]}"
+
+python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}"
 
 # --- Parquet encode + cone check: val (seen) ---
 python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
   "${MC}" \
-  bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5 \
+  "${DATA_OVERRIDES[@]}" \
   inference_and_eval_setting.cone_check_split=val \
   inference_and_eval_setting.cone_check_val_subsplit=seen
 
@@ -65,7 +71,7 @@ python scripts/result_processing_cone_check/check_taxonomy_cone_statistics.py \
 # --- Parquet encode + cone check: train (no_split_and_seen_train) ---
 python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
   "${MC}" \
-  bioscan_5m_data.path_to_hdf5_data=$SLURM_TMPDIR/BIOSCAN_5M.hdf5 \
+  "${DATA_OVERRIDES[@]}" \
   inference_and_eval_setting.cone_check_split=no_split_and_seen_train
 
 python scripts/result_processing_cone_check/check_taxonomy_cone_statistics.py \
