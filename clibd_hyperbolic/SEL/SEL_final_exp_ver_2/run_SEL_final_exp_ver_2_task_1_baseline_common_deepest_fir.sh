@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_1_baseline_fir
+#SBATCH -J SEL_ver2_1_1_baseline_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
 #SBATCH --output=logs/SEL_final_exp_ver_2/1_baseline_common_deepest.output

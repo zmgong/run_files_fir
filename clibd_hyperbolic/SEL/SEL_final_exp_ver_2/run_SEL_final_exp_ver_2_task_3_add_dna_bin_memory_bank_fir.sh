@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_3_dna_mb_fir
+#SBATCH -J SEL_ver2_1_3_dna_mb_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
 #SBATCH --output=logs/SEL_final_exp_ver_2/3_add_dna_bin_memory_bank.output

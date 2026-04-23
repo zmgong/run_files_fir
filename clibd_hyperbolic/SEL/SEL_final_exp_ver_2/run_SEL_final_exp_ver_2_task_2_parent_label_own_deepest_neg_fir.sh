@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_2_par_lbl_fir
+#SBATCH -J SEL_ver2_1_2_par_lbl_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
 #SBATCH --output=logs/SEL_final_exp_ver_2/2_parent_label_own_deepest_neg.output

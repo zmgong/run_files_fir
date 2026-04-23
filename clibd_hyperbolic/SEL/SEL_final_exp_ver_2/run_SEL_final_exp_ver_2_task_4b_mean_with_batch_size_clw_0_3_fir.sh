@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J SEL_ver2_4b_clw03_fir
+#SBATCH -J SEL_ver2_1_4b_clw03_fir
 #SBATCH --gpus-per-node=h100:4
 #SBATCH --time=23:59:00
 #SBATCH --output=logs/SEL_final_exp_ver_2/4b_mean_with_batch_size_clw_0_3.output
