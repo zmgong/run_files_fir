@@ -52,12 +52,12 @@ MC="${CONFIG_BASE}/${cfg}.yaml"
 # 上面已经把这些文件 rsync 到 $SLURM_TMPDIR，所以只需覆盖根目录这一处即可。
 DATA_OVERRIDES=(bioscan_5m_data.dir=$SLURM_TMPDIR)
 
-python scripts/train_cl.py "${MC}" "${DATA_OVERRIDES[@]}"
+srun python scripts/train_cl.py "${MC}" "${DATA_OVERRIDES[@]}"
 
-python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}"
+srun python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}"
 
 # --- Parquet encode + cone check: val (seen) ---
-python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
+srun python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
   "${MC}" \
   "${DATA_OVERRIDES[@]}" \
   inference_and_eval_setting.cone_check_split=val \
@@ -69,7 +69,7 @@ python scripts/result_processing_cone_check/check_taxonomy_cone_statistics.py \
   --split val
 
 # --- Parquet encode + cone check: train (no_split_and_seen_train) ---
-python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
+srun python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
   "${MC}" \
   "${DATA_OVERRIDES[@]}" \
   inference_and_eval_setting.cone_check_split=no_split_and_seen_train
