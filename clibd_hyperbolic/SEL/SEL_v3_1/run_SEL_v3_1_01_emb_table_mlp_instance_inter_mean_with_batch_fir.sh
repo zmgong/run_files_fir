@@ -8,16 +8,16 @@
 #SBATCH --output=%x_%j.out
 #SBATCH --mem=0
 #SBATCH --exclusive
-#SBATCH --account=rrg-msavva
+#SBATCH --account=rrg-angelx
 
 set -euo pipefail
 
 cfg="1_emb_table_mlp_instance_inter_mean_with_batch"
 name="SEL_v3_1_01_emb_table_mlp_instance_inter_mean_with_batch"
 
-rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
+rsync -avhP ~/projects/def-angelx/zmgong/data/BIOSCAN_5M/BIOSCAN_5M.hdf5 $SLURM_TMPDIR/
 rsync -avhP ~/scratch/research/clibd_hyperbolic/data/BIOSCAN_5M/*.json $SLURM_TMPDIR/
-rsync -avhP ~/projects/rrg-msavva/zmgong/data/BIOSCAN_5M/*.csv $SLURM_TMPDIR/
+rsync -avhP ~/projects/def-angelx/zmgong/data/BIOSCAN_5M/*.csv $SLURM_TMPDIR/
 
 cd ~/scratch/research/clibd_hyperbolic
 module load python/3.11
