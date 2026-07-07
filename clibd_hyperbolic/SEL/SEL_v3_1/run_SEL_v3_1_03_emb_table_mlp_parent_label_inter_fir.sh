@@ -42,8 +42,7 @@ echo "==========================================================================
 
 srun python scripts/train_cl.py "${MC}" "${DATA_OVERRIDES[@]}"
 
-srun python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}" inference_and_eval_setting.eval_on=test
-srun python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}"
+srun python scripts/inference_and_eval.py "${MC}" "${DATA_OVERRIDES[@]}" inference_and_eval_setting.eval_on=val
 
 srun python scripts/result_processing_cone_check/encode_embeddings_to_parquet.py \
   "${MC}" \
